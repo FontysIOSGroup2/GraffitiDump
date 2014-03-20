@@ -13,7 +13,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="oWv-cr-Nzf">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="oWv-cr-Nzf" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.99966461880000002" green="0.99234295080000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,8 +57,8 @@
                                 <color key="backgroundColor" red="0.77254909279999995" green="0.1411764771" blue="0.18823531269999999" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="tintColor" red="0.77254909279999995" green="0.1411764771" blue="0.18823531269999999" alpha="1" colorSpace="deviceRGB"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Photo title" minimumFontSize="17" id="QC1-tC-fbw">
-                                <rect key="frame" x="10" y="376" width="300" height="31"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="bottom" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Photo title" minimumFontSize="17" id="QC1-tC-fbw">
+                                <rect key="frame" x="10" y="380" width="300" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -67,6 +67,17 @@
                                     <outlet property="delegate" destination="QHZ-w9-Fl5" id="CH4-LD-geE"/>
                                 </connections>
                             </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="tq1-6A-Uu2">
+                                <rect key="frame" x="0.0" y="372" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="add" id="hyT-oh-D48">
+                                        <connections>
+                                            <action selector="Upload:" destination="QHZ-w9-Fl5" id="2w4-xp-800"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.7725490927696228" green="0.14117647707462311" blue="0.18823531270027161" alpha="1" colorSpace="deviceRGB"/>
                         <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -76,12 +87,19 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="btnAction" destination="RpD-Dl-QEf" id="1I7-BM-27z"/>
+                        <outlet property="btnCamera" destination="t3w-Zl-6N4" id="DDX-DO-aVl"/>
+                        <outlet property="btnUpload" destination="hyT-oh-D48" id="EAq-1o-0IX"/>
                         <outlet property="fldTitle" destination="QC1-tC-fbw" id="ai8-SH-2AY"/>
                         <outlet property="photo" destination="k2O-nf-Kkb" id="esK-ui-MiU"/>
                         <segue destination="Tap-8t-COH" kind="modal" identifier="ShowLogin" id="h1n-sa-8IU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Sh-Y8-vrY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem systemItem="camera" id="t3w-Zl-6N4">
+                    <connections>
+                        <action selector="Camera:" destination="QHZ-w9-Fl5" id="QKq-3Y-3gZ"/>
+                    </connections>
+                </barButtonItem>
                 <barButtonItem systemItem="action" id="RpD-Dl-QEf">
                     <connections>
                         <action selector="btnActionTapped:" destination="QHZ-w9-Fl5" id="FrD-hu-d1q"/>

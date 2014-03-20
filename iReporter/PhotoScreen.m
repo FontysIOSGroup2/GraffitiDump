@@ -28,7 +28,8 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     // Custom initialization
-    self.navigationItem.rightBarButtonItem = btnAction;
+    //self.navigationItem.rightBarButtonItem = btnAction;
+    self.navigationItem.rightBarButtonItem = btnCamera;
     self.navigationItem.title = @"Post photo";
 	if (![[API sharedInstance] isAuthorized]) {
 		[self performSegueWithIdentifier:@"ShowLogin" sender:nil];
@@ -50,6 +51,39 @@
 	[[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Close" destructiveButtonTitle:nil otherButtonTitles:@"Take photo", @"Effects!", @"Post Photo", @"Logout", nil] 
 	 showInView:self.view];
 
+}
+
+- (IBAction)Camera:(id)sender {
+    
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+#if TARGET_IPHONE_SIMULATOR
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+#else
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+#endif
+    imagePickerController.editing = YES;
+    imagePickerController.delegate = (id)self;
+    
+    [self presentModalViewController:imagePickerController animated:YES];
+}
+
+- (IBAction)Upload:(id)sender {
+    //upload the image and the title to the web service
+    [[API sharedInstance] commandWithParams:[NSMutableDictionary dictionaryWithObjectsAndKeys:@"upload", @"command", UIImageJPEGRepresentation(photo.image,70), @"file", fldTitle.text, @"title", nil] onCompletion:^(NSDictionary *json) {
+		//completion
+		if (![json objectForKey:@"error"]) {
+			//success
+			[[[UIAlertView alloc]initWithTitle:@"Success!" message:@"Your photo is uploaded" delegate:nil cancelButtonTitle:@"Yay!" otherButtonTitles: nil] show];
+			
+		} else {
+			//error, check for expired session and if so - authorize the user
+			NSString* errorMsg = [json objectForKey:@"error"];
+			[UIAlertView error:errorMsg];
+			if ([@"Authorization required" compare:errorMsg]==NSOrderedSame) {
+				[self performSegueWithIdentifier:@"ShowLogin" sender:nil];
+			}
+		}
+	}];
 }
 
 -(void)takePhoto {
@@ -136,5 +170,57 @@
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissModalViewControllerAnimated:NO];
 }
+
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self animateTextField:textField up:YES];
+}
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self animateTextField:textField up:NO];
+}
+
+
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up
+{
+    int animatedDistance;
+    int moveUpValue = textField.frame.origin.y+ textField.frame.size.height;
+    UIInterfaceOrientation orientation =
+    [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait ||
+        orientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        
+        animatedDistance = 110-(460-moveUpValue-5);
+    }
+    else
+    {
+        animatedDistance = 162-(320-moveUpValue-5);
+    }
+    
+    if(animatedDistance>0)
+    {
+        const int movementDistance = animatedDistance;
+        const float movementDuration = 0.3f;
+        int movement = (up ? -movementDistance : movementDistance);
+        [UIView beginAnimations: nil context: nil];
+        [UIView setAnimationBeginsFromCurrentState: YES];
+        [UIView setAnimationDuration: movementDuration];
+        self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+        [UIView commitAnimations];
+    }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
 
 @end

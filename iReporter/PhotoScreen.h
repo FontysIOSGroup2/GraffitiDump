@@ -13,10 +13,14 @@
     IBOutlet UIImageView* photo;
     IBOutlet UIBarButtonItem* btnAction;
     IBOutlet UITextField* fldTitle;
+    IBOutlet UIBarButtonItem *btnCamera;
+    IBOutlet UIBarButtonItem *btnUpload;
 }
 
 //show the app menu 
 -(IBAction)btnActionTapped:(id)sender;
+- (IBAction)Camera:(id)sender;
+- (IBAction)Upload:(id)sender;
 
 
 @end
