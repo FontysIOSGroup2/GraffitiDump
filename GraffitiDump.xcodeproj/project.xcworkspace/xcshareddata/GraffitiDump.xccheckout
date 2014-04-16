@@ -14,8 +14,6 @@
 		<string>https://github.com/robbdimitrov/RDVKeyboardAvoiding.git</string>
 		<key>A019C11E-C96E-4304-8EC6-AFD6EEC3E2ED</key>
 		<string>https://github.com/FontysIOSGroup2/GraffitiDump.git</string>
-		<key>C1FA092F-D99C-4F69-A898-BC2D7CF1246A</key>
-		<string>https://github.com/songfrank/DAKeyboardControl.git</string>
 		<key>C20E02E1-02F8-49B5-8545-3423BA745871</key>
 		<string>https://github.com/michaeltyson/TPKeyboardAvoiding.git</string>
 	</dict>
@@ -27,8 +25,6 @@
 		<string>../../iReporter/RDVKeyboardAvoiding</string>
 		<key>A019C11E-C96E-4304-8EC6-AFD6EEC3E2ED</key>
 		<string>../..</string>
-		<key>C1FA092F-D99C-4F69-A898-BC2D7CF1246A</key>
-		<string>../../DAKeyboardControl</string>
 		<key>C20E02E1-02F8-49B5-8545-3423BA745871</key>
 		<string>../../TPKeyboardAvoiding</string>
 	</dict>
@@ -40,14 +36,6 @@
 	<string>A019C11E-C96E-4304-8EC6-AFD6EEC3E2ED</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C1FA092F-D99C-4F69-A898-BC2D7CF1246A</string>
-			<key>IDESourceControlWCCName</key>
-			<string>DAKeyboardControl</string>
-		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
