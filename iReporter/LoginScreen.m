@@ -1,9 +1,6 @@
  //
 //  LoginScreen.m
-//  iReporter
-//
-//  Created by Marin Todorov on 09/02/2012.
-//  Copyright (c) 2012 Marin Todorov. All rights reserved.
+//  GraffitiDump
 //
 
 #import "LoginScreen.h"
@@ -14,16 +11,16 @@
 #define kSalt @"adlfu3489tyh2jnkLIUGI&%EV(&0982cbgrykxjnk8855"
 
 @implementation LoginScreen
-- (IBAction)dismissKeyboardUser:(id)sender {
-    [self resignFirstResponder];
-}
-- (IBAction)dismissKeyboardPass:(id)sender {
-    [self resignFirstResponder];
+- (IBAction)dismissKeyboardUsername:(id)sender {
+    [self resignFirstResponder];    
 }
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    
+    //load username!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *loadString = [defaults objectForKey:@"username"];
+    [fldUsername setText:loadString];
     //focus on the username field / show keyboard
     [fldUsername becomeFirstResponder];
 }
@@ -38,26 +35,20 @@
 
 -(IBAction)btnLoginRegisterTapped:(UIButton*)sender {
 	//form fields validation
-	if (fldUsername.text.length < 4 || fldPassword.text.length < 4) {
-		[UIAlertView error:@"Enter username and password over 4 chars each."];
+	if (fldUsername.text.length < 1) {
+		[UIAlertView error:@"Enter username over 1 chars each."];
 		return;
 	}
-	//salt the password
-	NSString* saltedPassword = [NSString stringWithFormat:@"%@%@", fldPassword.text, kSalt];
-	//prepare the hashed storage
-	NSString* hashedPassword = nil;
-	unsigned char hashedPasswordData[CC_SHA1_DIGEST_LENGTH];
-	//hash the pass
-	NSData *data = [saltedPassword dataUsingEncoding: NSUTF8StringEncoding];
-	if (CC_SHA1([data bytes], [data length], hashedPasswordData)) {
-		hashedPassword = [[NSString alloc] initWithBytes:hashedPasswordData length:sizeof(hashedPasswordData) encoding:NSASCIIStringEncoding];
-	} else {
-		[UIAlertView error:@"Password can't be sent"];
-		return;
-	}
+    // username opslaan !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    NSString *saveString = fldUsername.text;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:saveString forKey:@"username"];
+    [defaults synchronize];
+
+
 	//check whether it's a login or register
 	NSString* command = (sender.tag==1)?@"register":@"login";
-	NSMutableDictionary* params =[NSMutableDictionary dictionaryWithObjectsAndKeys:command, @"command", fldUsername.text, @"username", hashedPassword, @"password", nil];
+	NSMutableDictionary* params =[NSMutableDictionary dictionaryWithObjectsAndKeys:command, @"command", fldUsername.text, @"username", nil];
 	//make the call to the web API
 	[[API sharedInstance] commandWithParams:params onCompletion:^(NSDictionary *json) {
 		//result returned
@@ -72,6 +63,8 @@
 			[UIAlertView error:[json objectForKey:@"error"]];
 		}
 	}];
+    
+    
 
 }
 

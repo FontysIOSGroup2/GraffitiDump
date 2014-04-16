@@ -1,14 +1,13 @@
 //
 //  StreamPhotoScreen.h
-//  iReporter
+//  GraffitiDump
 //
-//  Created by Marin Todorov on 10/02/2012.
-//  Copyright (c) 2012 Marin Todorov. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoView.h"
 
-@interface StreamPhotoScreen : UIViewController
+@interface StreamPhotoScreen : UIViewController <PhotoViewDelegate>
 {
     //just the photo view and the photo title
     IBOutlet UIImageView* photoView;
@@ -16,5 +15,6 @@
 }
 
 @property (strong, nonatomic) NSNumber* IdPhoto;
+- (IBAction)selectMapButton:(id)sender;
 
 @end

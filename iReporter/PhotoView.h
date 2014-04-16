@@ -1,9 +1,6 @@
 //
 //  PhotoView.h
-//  iReporter
-//
-//  Created by Fahim Farook on 9/6/12.
-//  Copyright (c) 2012 Marin Todorov. All rights reserved.
+//  GraffitiDump
 //
 
 #import <UIKit/UIKit.h>

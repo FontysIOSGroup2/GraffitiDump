@@ -1,9 +1,6 @@
 //
 //  PhotoView.m
-//  iReporter
-//
-//  Created by Fahim Farook on 9/6/12.
-//  Copyright (c) 2012 Marin Todorov. All rights reserved.
+//  GraffitiDump
 //
 
 #import "PhotoView.h"
@@ -34,7 +31,7 @@
         UILabel* caption = [[UILabel alloc] initWithFrame:CGRectMake(0, kThumbSide-16, kThumbSide, 16)];
         caption.backgroundColor = [UIColor blackColor];
         caption.textColor = [UIColor whiteColor];
-        caption.textAlignment = UITextAlignmentCenter;
+        caption.textAlignment = NSTextAlignmentCenter;
         caption.font = [UIFont systemFontOfSize:12];
         caption.text = [NSString stringWithFormat:@"@%@",[data objectForKey:@"username"]];
         [self addSubview: caption];

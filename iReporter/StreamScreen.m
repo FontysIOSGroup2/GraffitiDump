@@ -1,9 +1,7 @@
 //
 //  StreamScreen.m
-//  iReporter
+//  GraffitiDump
 //
-//  Created by Marin Todorov on 10/02/2012.
-//  Copyright (c) 2012 Marin Todorov. All rights reserved.
 //
 
 #import "StreamScreen.h"
@@ -24,7 +22,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Photolist";
+    self.navigationItem.title = @"GraffitiDump stream";
     self.navigationItem.rightBarButtonItem = btnCompose;
     self.navigationItem.leftBarButtonItem = btnRefresh;
 	//show the photo stream
@@ -61,14 +59,14 @@
         [listView addSubview: photoView];
     }    
     // 3 update scroll list's height
-    int listHeight = ([stream count]/3 + 1)*(kThumbSide+kPadding);
+    long listHeight = ([stream count]/3 + 1)*(kThumbSide+kPadding);
     [listView setContentSize:CGSizeMake(320, listHeight)];
     [listView scrollRectToVisible:CGRectMake(0, 0, 10, 10) animated:YES];
 }
 
 -(void)didSelectPhoto:(PhotoView*)sender {
     //photo selected - show it full screen
-    [self performSegueWithIdentifier:@"ShowPhoto" sender:[NSNumber numberWithInt:sender.tag]];   
+    [self performSegueWithIdentifier:@"ShowPhoto" sender:[NSNumber numberWithLong:sender.tag]];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

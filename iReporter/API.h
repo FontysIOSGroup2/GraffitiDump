@@ -1,9 +1,7 @@
 //
 //  API.h
-//  iReporter
+//  GraffitiDump
 //
-//  Created by Fahim Farook on 9/6/12.
-//  Copyright (c) 2012 Marin Todorov. All rights reserved.
 //
 
 #import "AFHTTPClient.h"

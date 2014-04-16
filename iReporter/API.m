@@ -1,15 +1,12 @@
 //
 //  API.m
-//  iReporter
-//
-//  Created by Fahim Farook on 9/6/12.
-//  Copyright (c) 2012 Marin Todorov. All rights reserved.
+//  GraffitiDump
 //
 
 #import "API.h"
 
 //the web location of the service
-#define kAPIHost @"http://i252078.iris.fhict.nl/"
+#define kAPIHost @"http://i252078.iris.fhict.nl"
 #define kAPIPath @"GraffitiDump/"
 
 @implementation API

@@ -1,9 +1,6 @@
 //
 //  AppDelegate.m
-//  iReporter
-//
-//  Created by Marin Todorov on 09/02/2012.
-//  Copyright (c) 2012 Marin Todorov. All rights reserved.
+//  GraffitiDump
 //
 
 #import "AppDelegate.h"
@@ -12,13 +9,11 @@
 
 @implementation AppDelegate
 
-
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     return YES;
-    [[UINavigationBar appearance] setBarTintColor:[UIColor redColor]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -59,6 +54,5 @@
      See also applicationDidEnterBackground:.
      */
 }
-
 
 @end
